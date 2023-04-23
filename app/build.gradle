@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp' version "1.8.0-1.0.9"
+
 }
 
 android {
@@ -37,7 +39,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.2.0'
+        kotlinCompilerExtensionVersion '1.4.0'
     }
     packagingOptions {
         resources {
@@ -63,5 +65,11 @@ android {
         debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
         implementation("io.coil-kt:coil-compose:2.2.2")
         implementation("androidx.navigation:navigation-compose:$nav_version")
+        implementation("androidx.room:room-runtime:$room_version")
+
+        // To use Kotlin Symbol Processing (KSP)
+        ksp("androidx.room:room-compiler:$room_version")
+        // optional - Kotlin Extensions and Coroutines support for Room
+        implementation("androidx.room:room-ktx:$room_version")
 
     }
